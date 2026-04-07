@@ -18,7 +18,9 @@ plugins/__pycache__/
 
 # Data outputs
 data/processed/*
+!data/processed/.gitkeep
 data/exports/*
+!data/exports/.gitkeep
 
 # OS / editor
 .DS_Store
