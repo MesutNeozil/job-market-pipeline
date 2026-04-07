@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+
+# Airflow
+airflow.cfg
+airflow.db
+logs/
+plugins/__pycache__/
+
+# Environment variables
+.env
+
+# Data outputs
+data/processed/*
+data/exports/*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Pytest
+.pytest_cache/
+
+# Mac / Linux / temp
+*.swp
+*.tmp
