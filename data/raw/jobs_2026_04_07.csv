@@ -1,0 +1,6 @@
+job_id,title,company,location,date_posted,salary_text,description
+1,Data Analyst,ABC Tech,Singapore,2026-04-07,SGD 4000-5000,"SQL, Python, Tableau required"
+2,Data Engineer,DataWorks,Singapore,2026-04-07,SGD 5000-6500,"Airflow, Python, ETL, PostgreSQL"
+3,Business Analyst,Insight Pte Ltd,Singapore,2026-04-07,SGD 4200-5200,"Excel, SQL, dashboarding"
+4,Analytics Engineer,Metric Labs,Remote,2026-04-07,SGD 5500-7000,"Python, SQL, Airflow, dbt"
+5,BI Analyst,Vision Analytics,Singapore,2026-04-07,SGD 3800-4800,"Tableau, Excel, SQL"
