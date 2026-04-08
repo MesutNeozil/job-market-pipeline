@@ -1,2 +1,5 @@
 pandas
 apache-airflow
+sqlalchemy
+psycopg2-binary
+apache-airflow-providers-postgres
