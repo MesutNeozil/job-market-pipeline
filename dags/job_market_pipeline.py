@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 from pathlib import Path
+import psycopg2
 
 from airflow.decorators import dag, task
 from airflow.providers.postgres.hooks.postgres import PostgresHook
@@ -8,7 +9,7 @@ from src.extract import extract_jobs
 from src.validate import validate_jobs
 from src.transform import transform_jobs
 from src.load import load_to_postgres
-
+from src.export import export_daily_metrics
 
 @dag(
     dag_id="job_market_pipeline",
@@ -29,15 +30,13 @@ def job_market_pipeline():
         sql_path = Path("/opt/airflow/sql/create_tables.sql")
         sql_text = sql_path.read_text(encoding="utf-8")
 
-        hook = PostgresHook(
-            postgres_conn_id=None,
+        conn = psycopg2.connect(
             host="postgres",
-            schema="airflow",
-            login="airflow",
+            dbname="airflow",
+            user="airflow",
             password="airflow",
             port=5432,
         )
-        conn = hook.get_conn()
         cur = conn.cursor()
         cur.execute(sql_text)
         conn.commit()
@@ -61,13 +60,41 @@ def job_market_pipeline():
     @task
     def load_task(file_path: str):
         return load_to_postgres(file_path)
+    
+    @task
+    def export_task():
+        return export_daily_metrics()
+    
+    @task
+    def build_marts_task():
+        sql_path = Path("/opt/airflow/sql/marts.sql")
+        sql_text = sql_path.read_text(encoding="utf-8")
+
+        conn = psycopg2.connect(
+            host="postgres",
+            dbname="airflow",
+            user="airflow",
+            password="airflow",
+            port=5432,
+        )
+        cur = conn.cursor()
+        cur.execute(sql_text)
+        conn.commit()
+        cur.close()
+        conn.close()
+
+        return "Marts built"
 
     created = create_tables_task()
     extracted = extract_task()
     validated = validate_task(extracted)
     transformed = transform_task(validated)
+    loaded = load_task(transformed)
+    marts = build_marts_task()
+    exported = export_task()
+
     created >> extracted
-    load_task(transformed)
+    loaded >> marts >> exported
 
 
 job_market_pipeline()
