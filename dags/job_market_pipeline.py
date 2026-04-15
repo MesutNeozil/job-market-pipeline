@@ -47,7 +47,7 @@ def job_market_pipeline():
 
     @task
     def extract_task():
-        return extract_jobs("data/raw/jobs_2026_04_07.csv")
+        return extract_jobs("data/raw/jobs_2026_04_15_220016.csv")
 
     @task
     def validate_task(file_path: str):

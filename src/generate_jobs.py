@@ -99,6 +99,6 @@ def generate_job_data(
 
 
 if __name__ == "__main__":
-    num_rows = int(sys.argv[1]) if len(sys.argv) > 1 else 25
+    num_rows = 25
     path = generate_job_data(num_rows=num_rows, output_file=None, seed=42)
     print(f"Generated file: {path}")
