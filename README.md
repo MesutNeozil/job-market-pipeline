@@ -39,7 +39,7 @@ job-market-pipeline/
 ├── docker-compose.yml
 ├── requirements.txt
 └── README.md
-
+```
 ## How to Use This Repository
 
 ### Prerequisites
@@ -52,13 +52,13 @@ Make sure the following are installed:
 ```bash
 git clone https://github.com/MesutNeozil/job-market-pipeline.git
 cd job-market-pipeline
-
+```
 ### 2. Generate a raw job data file
 First, edit `num_rows` in `src/generate_jobs.py` accordingly. Then run:
 ```bash
 python src/generate_jobs.py
 This creates a timestamped CSV in `data/raw` (eg. `data/raw/jobs_2026_04_15_214312.csv`).
-
+```
 ### 3. Update the input file used by DAG
 In `dags/job_market_pipeline.py`, find 'extract_task` and update the file path accordingly.
 
@@ -70,7 +70,7 @@ This starts:
 - Airflow webserver
 - Airflow scheduler
 - Airflow init service
-
+```
 ### 5. Open the Airflow UI
 Go to http://localhost:8080 and log in with:
 - Username: airflow
@@ -96,3 +96,4 @@ After a successful run, check:
 ### 8. Stop the services
 ```bash
 docker compose down
+```
