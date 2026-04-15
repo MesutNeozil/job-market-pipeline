@@ -21,6 +21,8 @@ data/processed/*
 !data/processed/.gitkeep
 data/exports/*
 !data/exports/.gitkeep
+data/raw/*
+!data/raw/.gitkeep
 
 # OS / editor
 .DS_Store
