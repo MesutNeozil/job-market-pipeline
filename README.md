@@ -57,20 +57,22 @@ cd job-market-pipeline
 First, edit `num_rows` in `src/generate_jobs.py` accordingly. Then run:
 ```bash
 python src/generate_jobs.py
-This creates a timestamped CSV in `data/raw` (eg. `data/raw/jobs_2026_04_15_214312.csv`).
 ```
+This creates a timestamped CSV in `data/raw` (eg. `data/raw/jobs_2026_04_15_214312.csv`).
+
 ### 3. Update the input file used by DAG
 In `dags/job_market_pipeline.py`, find 'extract_task` and update the file path accordingly.
 
 ### 4. Start the services
 ```bash
 docker compose up --build
+```
 This starts:
 - PostgreSQL
 - Airflow webserver
 - Airflow scheduler
 - Airflow init service
-```
+
 ### 5. Open the Airflow UI
 Go to http://localhost:8080 and log in with:
 - Username: airflow
